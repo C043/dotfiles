@@ -1,0 +1,71 @@
+return {
+	{ -- Autoformat
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>f",
+				function()
+					require("conform").format({ async = true, lsp_format = "fallback" })
+				end,
+				mode = "",
+				desc = "[F]ormat buffer",
+			},
+		},
+		opts = {
+			notify_on_error = false,
+			format_on_save = function(bufnr)
+				-- Disable "format_on_save lsp_fallback" for languages that don't
+				-- have a well standardized coding style. You can add additional
+				-- languages here or re-enable it for the disabled ones.
+				local disable_filetypes = { c = false }
+				local lsp_format_opt
+				if disable_filetypes[vim.bo[bufnr].filetype] then
+					lsp_format_opt = "never"
+				else
+					lsp_format_opt = "fallback"
+				end
+				return {
+					timeout_ms = 500,
+					lsp_format = lsp_format_opt,
+				}
+			end,
+			formatters_by_ft = {
+				lua = { "stylua" },
+				-- Conform can also run multiple formatters sequentially
+				python = { "isort", "black" },
+				--
+				-- You can use 'stop_after_first' to run the first available formatter from the list
+				javascript = { "prettier", "prettierd", stop_after_first = true },
+				typescript = { "prettier", "prettierd", stop_after_first = true },
+				typescriptreact = { "prettier", "prettierd", stop_after_first = true },
+				javascriptreact = { "prettier", "prettierd", stop_after_first = true },
+				json = { "prettier", "prettierd", stop_after_first = true },
+				java = { "google-java-format" },
+				ejs = { "prettier" },
+				-- NOTE
+				-- Add this in the root file for ejs projects in a .prettierrc
+				-- file:
+				-- {
+				--   "overrides": [
+				--     {
+				--       "files": "*.ejs",
+				--       "options": {
+				--         "parser": "html"
+				--       }
+				--     }
+				--   ]
+				-- }
+			},
+			formatters = {
+				prettier = {
+					prepend_args = {
+						"--config",
+						vim.fn.expand("~/.config/prettier/config.json"),
+					},
+				},
+			},
+		},
+	},
+}
