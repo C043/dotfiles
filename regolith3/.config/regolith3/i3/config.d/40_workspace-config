@@ -1,0 +1,7 @@
+## Modify // Window Fullscreen Toggle // <> m ##
+set_from_resource $wm.binding.fullscreen_toggle wm.binding.fullscreen_toggle m
+bindsym $mod+m fullscreen toggle
+
+## Modify // Window Layout Mode // <> o ##
+set_from_resource $wm.binding.layout_modt wm.binding.layout_mode o
+bindsym $mod+o layout toggle tabbed splith splitv
