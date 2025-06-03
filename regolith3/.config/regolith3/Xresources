@@ -1,7 +1,8 @@
 wm.bar.mode: hide
 wm.gaps.focus_follows_mouse: true
 regolith.look.path: /usr/share/regolith-look/lascaille
-regolith.wallpaper.file: /usr/share/wallpapers/a_cartoon_of_a_monster.png
 wm.gaps.inner.size: 5
 wm.gaps.inner.size: 50
 wm.gaps.inner.size: 40
+regolith.wallpaper.file: /usr/share/wallpapers/ALLqk82.png
+regolith.lockscreen.wallpaper.file: /usr/share/wallpapers/looking-for.png
