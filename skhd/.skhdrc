@@ -191,3 +191,4 @@ shift + cmd - l: yabai -m window --swap east
 # ctrl + shift - l: yabai -m window --warp east
 
 cmd - t: kitty --directory=~
+cmd - b: open -a Vivaldi
