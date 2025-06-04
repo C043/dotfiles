@@ -22,4 +22,3 @@ shift + cmd - l : yabai -m window --warp  east  || (yabai -m window --display ea
 
 cmd - t: kitty --directory=~
 cmd - b: open -na Vivaldi --args --new-window
-cmd - i: /usr/bin/env zsh -lc "nvim-anywhere.sh"
