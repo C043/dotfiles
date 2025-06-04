@@ -21,5 +21,5 @@ shift + cmd - k : yabai -m window --warp  north || (yabai -m window --display no
 shift + cmd - l : yabai -m window --warp  east  || (yabai -m window --display east  ; yabai -m display --focus east)
 
 cmd - t: kitty --directory=~
-cmd - b: open -a Vivaldi
+cmd - b: open -na Vivaldi --args --new-window
 cmd - i: /usr/bin/env zsh -lc "nvim-anywhere.sh"
