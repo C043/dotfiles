@@ -87,6 +87,39 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufLeave", {
+	callback = function()
+		local closedBuffers = {}
+		vim.iter(vim.api.nvim_list_bufs())
+			:filter(function(bufnr)
+				local valid = vim.api.nvim_buf_is_valid(bufnr)
+				local loaded = vim.api.nvim_buf_is_loaded(bufnr)
+				return valid and loaded
+			end)
+			:filter(function(bufnr)
+				local bufPath = vim.api.nvim_buf_get_name(bufnr)
+				local doesNotExist = vim.uv.fs_stat(bufPath) == nil
+				local notSpecialBuffer = vim.bo[bufnr].buftype == ""
+				local notNewBuffer = bufPath ~= ""
+				return doesNotExist and notSpecialBuffer and notNewBuffer
+			end)
+			:each(function(bufnr)
+				local bufName = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
+				table.insert(closedBuffers, bufName)
+				vim.api.nvim_buf_delete(bufnr, { force = true })
+			end)
+		if #closedBuffers == 0 then
+			return
+		end
+
+		if #closedBuffers == 1 then
+			print("Buffer closed: " .. closedBuffers[1])
+		else
+			local text = "- " .. table.concat(closedBuffers, "\n- ")
+			print("Buffers closed:\n" .. text)
+		end
+	end,
+})
 -- vim.cmd("autocmd BufNewFile,BufRead *.ejs set filetype=html")
 -- vim.cmd("autocmd BufNewFile,BufRead *.ejs set filetype=ejs.html")
 
