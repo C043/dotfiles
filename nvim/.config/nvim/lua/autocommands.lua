@@ -90,6 +90,18 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufLeave", {
 	callback = function()
 		local closedBuffers = {}
+		local ignored_filetypes = {
+			"lazy",
+			"oil",
+			"mason",
+			"NvimTree",
+			"qf",
+			"netrw",
+			"TelescopePrompt",
+			"TelescopeResults",
+			"toggleterm",
+		}
+
 		vim.iter(vim.api.nvim_list_bufs())
 			:filter(function(bufnr)
 				local valid = vim.api.nvim_buf_is_valid(bufnr)
@@ -101,7 +113,9 @@ vim.api.nvim_create_autocmd("BufLeave", {
 				local doesNotExist = vim.uv.fs_stat(bufPath) == nil
 				local notSpecialBuffer = vim.bo[bufnr].buftype == ""
 				local notNewBuffer = bufPath ~= ""
-				return doesNotExist and notSpecialBuffer and notNewBuffer
+				local filetype = vim.bo[bufnr].filetype
+				local isIgnored = vim.tbl_contains(ignored_filetypes, filetype)
+				return doesNotExist and notSpecialBuffer and notNewBuffer and not isIgnored
 			end)
 			:each(function(bufnr)
 				local bufName = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
