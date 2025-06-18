@@ -98,6 +98,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
 			"qf",
 			"netrw",
 			"TelescopePrompt",
+			"dashboard",
 			"TelescopeResults",
 			"toggleterm",
 		}
