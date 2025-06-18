@@ -134,6 +134,31 @@ vim.api.nvim_create_autocmd("BufLeave", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+	callback = function()
+		local excluded_buffers = {
+			NvimTree = true,
+			help = true,
+			lazy = true,
+			TelescopePrompt = true,
+			option = true,
+		}
+
+		local filetype = vim.bo.filetype
+		local bufname = vim.api.nvim_buf_get_name(0)
+
+		if excluded_buffers[filetype] then
+			return
+		end
+
+		vim.defer_fn(function()
+			if vim.bo.buftype == "" and vim.bo.modifiable and not vim.bo.readonly then
+				vim.cmd("write")
+			end
+		end, 1000)
+	end,
+})
 -- vim.cmd("autocmd BufNewFile,BufRead *.ejs set filetype=html")
 -- vim.cmd("autocmd BufNewFile,BufRead *.ejs set filetype=ejs.html")
 
