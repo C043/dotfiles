@@ -152,3 +152,6 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 
 vim.keymap.set("n", "<Tab>", ">>")
 vim.keymap.set("n", "<S-Tab>", "<<")
+
+vim.keymap.set("i", "<Tab>", "<Esc>>>A")
+vim.keymap.set("i", "<S-Tab>", "<Esc><<A")
