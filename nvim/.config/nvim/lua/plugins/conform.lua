@@ -44,6 +44,7 @@ return {
 				json = { "prettier", "prettierd", stop_after_first = true },
 				java = { "google-java-format" },
 				ejs = { "prettier" },
+				sh = { "shfmt" },
 				-- NOTE
 				-- Add this in the root file for ejs projects in a .prettierrc
 				-- file:
