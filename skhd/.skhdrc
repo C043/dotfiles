@@ -47,5 +47,9 @@ shift + cmd - 8 : yabai -m window --space 8 --focus
 shift + cmd - 9 : yabai -m window --space 9 --focus
 shift + cmd - 0 : yabai -m window --space 10 -- focus
 
+cmd + alt - x : yabai -m space --destroy "$(yabai -m query --spaces --display | jq -r 'map(select(."has-focus" == true))[0].index')"
+
+cmd + alt - n : yabai -m space --create && yabai -m space --focus next
+
 cmd - t: kitty --directory=~
 cmd - b: open -na Vivaldi --args --new-window
