@@ -37,10 +37,10 @@ return {
 				python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
-				javascript = { "prettier", "prettierd", stop_after_first = true },
-				typescript = { "prettier", "prettierd", stop_after_first = true },
-				typescriptreact = { "prettier", "prettierd", stop_after_first = true },
-				javascriptreact = { "prettier", "prettierd", stop_after_first = true },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 				json = { "prettier", "prettierd", stop_after_first = true },
 				java = { "google-java-format" },
 				ejs = { "prettier" },
