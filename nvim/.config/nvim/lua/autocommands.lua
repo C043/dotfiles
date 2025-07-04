@@ -63,6 +63,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			vim.keymap.set("n", "<leader>rr", "<cmd>JavaRunnerRunMain<CR>", { desc = "Run Java Runner" })
 		end
 
+		if filetype == "python" then
+			vim.keymap.set("n", "<leader>rr", function()
+				utils.TerminalOut("python3 " .. fileName)
+			end, { desc = "Execute the current python script" })
+		end
+
 		if filetype == "cpp" then
 			vim.keymap.set(
 				"n",
