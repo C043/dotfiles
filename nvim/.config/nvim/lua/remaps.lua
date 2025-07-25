@@ -163,4 +163,11 @@ vim.keymap.set("i", "<Tab>", function()
 	end
 end, { expr = true, noremap = true })
 
-vim.keymap.set("i", "<S-Tab>", "<Esc><<A")
+vim.keymap.set("i", "<S-Tab>", function()
+	local line = vim.api.nvim_get_current_line()
+	if line:match("^%s*$") then
+		return "<Esc><<a"
+	else
+		return "<Esc><<A"
+	end
+end, { expr = true, noremap = true })
