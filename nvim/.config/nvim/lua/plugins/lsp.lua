@@ -208,6 +208,23 @@ return {
 				html = {
 					filetypes = { "html", "ejs" },
 				},
+
+				cssls = {
+					settings = {
+						css = { lint = { unknownAtRules = "ignore" } },
+						scss = { lint = { unknownAtRules = "ignore" } },
+						less = { lint = { unknownAtRules = "ignore" } },
+					},
+				},
+
+				tailwindcss = {},
+
+				-- clangd: set offset-encoding in one place
+				clangd = {
+					cmd = { "clangd", "--offset-encoding=utf-16" },
+				},
+
+				jdtls = {},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -251,23 +268,6 @@ return {
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-
-						require("platformio").setup({
-							lsp = "clangd", --default: ccls, other option: clangd
-							-- If you pick clangd, it also creates compile_commands.json
-						})
-
-						require("lspconfig").jdtls.setup({})
-
-						-- clangd fix
-						require("lspconfig").clangd.setup({
-							capabilities = cmp_nvim_lsp.default_capabilities(),
-							cmd = {
-								"clangd",
-								"--offset-encoding=utf-16",
-							},
-						})
 					end,
 				},
 			})
