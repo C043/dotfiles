@@ -1,4 +1,5 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local lspconfig = require("lspconfig")
 return {
 	{
 		-- Main LSP Configuration
@@ -219,6 +220,8 @@ return {
 
 				tailwindcss = {},
 
+				ts_ls = {},
+
 				-- clangd: set offset-encoding in one place
 				clangd = {
 					cmd = { "clangd", "--offset-encoding=utf-16" },
@@ -268,6 +271,10 @@ return {
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						-- Finally set up the server so it can attach
+						if server_name ~= "jdtls" then -- avoid clobbering custom jdtls setup
+							lspconfig[server_name].setup(server)
+						end
 					end,
 				},
 			})
