@@ -1,5 +1,8 @@
 require("noice").setup({
-	messages = {
-		enabled = false,
-	},
+  messages = {
+    enabled = false,
+  },
+  notify = {
+    enabled = false,
+  },
 })
