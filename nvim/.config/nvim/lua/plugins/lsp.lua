@@ -255,6 +255,7 @@ return {
 				"emmet-language-server",
 				"arduino_language_server",
 				"clangd",
+				"jdtls",
 				"prettier",
 				"prettierd",
 				"google-java-format",
