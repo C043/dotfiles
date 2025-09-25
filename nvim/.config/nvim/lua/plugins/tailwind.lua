@@ -10,6 +10,8 @@ return {
 			"neovim/nvim-lspconfig", -- optional
 		},
 		opts = {
+			-- Prevent tailwind-tools from requiring & configuring lspconfig
+			server = { override = false },
 			extensions = {
 				queries = { "ejs" },
 			},

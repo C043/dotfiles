@@ -19,7 +19,8 @@ if launcher_jar == "" then
 	error("Could not find org.eclipse.equinox.launcher.jar")
 end
 
-require("lspconfig").jdtls.setup({
+-- Configure jdtls with the new API and enable it
+vim.lsp.config('jdtls', {
 	cmd = {
 		"/opt/jdk-21.0.4+7/bin/java", -- ✅ Force correct Java version here
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -54,3 +55,5 @@ require("lspconfig").jdtls.setup({
 		},
 	},
 })
+
+vim.lsp.enable('jdtls')

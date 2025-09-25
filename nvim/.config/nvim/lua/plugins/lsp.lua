@@ -1,5 +1,4 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local lspconfig = require("lspconfig")
 return {
 	{
 		-- Main LSP Configuration
@@ -169,6 +168,8 @@ return {
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			-- Apply default capabilities to all servers
+			vim.lsp.config("*", { capabilities = capabilities })
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -227,7 +228,7 @@ return {
 					cmd = { "clangd", "--offset-encoding=utf-16" },
 				},
 
-				jdtls = {},
+				-- jdtls is configured separately in pluginConfigs/nvimJavaConfig.lua
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -261,22 +262,24 @@ return {
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- Configure each server with the new API
+			for name, server in pairs(servers) do
+				vim.lsp.config(name, server)
+			end
+
+			-- Ensure servers are enabled (activates on matching filetypes)
+			local to_enable = {}
+			for name, _ in pairs(servers) do
+				table.insert(to_enable, name)
+			end
+			if #to_enable > 0 then
+				vim.lsp.enable(to_enable)
+			end
+
+			-- Keep mason-lspconfig for installation bridging only
 			require("mason-lspconfig").setup({
-				automatic_installation = {},
-				ensure_installed = {},
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						-- Finally set up the server so it can attach
-						if server_name ~= "jdtls" then -- avoid clobbering custom jdtls setup
-							lspconfig[server_name].setup(server)
-						end
-					end,
-				},
+				ensure_installed = vim.tbl_keys(servers or {}),
+				automatic_enable = false,
 			})
 		end,
 	},
