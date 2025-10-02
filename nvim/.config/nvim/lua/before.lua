@@ -1,3 +1,8 @@
+-- Capture the default notifier before plugins can override it
+if not vim.notify_original then
+	vim.notify_original = vim.notify
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
