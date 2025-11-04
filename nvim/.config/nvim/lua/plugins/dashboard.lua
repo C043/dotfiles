@@ -21,6 +21,15 @@ return {
 							key = "f",
 						},
 						{
+							icon = " ",
+							desc = "Grep",
+							group = "String",
+							action = function()
+								require("telescope.builtin").live_grep()
+							end,
+							key = "g",
+						},
+						{
 							desc = "  Mason",
 							group = "DiagnosticHint",
 							action = "Mason",
