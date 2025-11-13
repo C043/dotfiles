@@ -1,3 +1,3 @@
 return {
-	{ "Nedra1998/nvim-mdlink" },
+	{ "c043/nvim-mdlink" },
 }
