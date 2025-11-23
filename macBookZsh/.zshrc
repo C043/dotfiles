@@ -134,6 +134,7 @@ alias prod="productivity.sh"
 alias todo="todo.sh"
 alias docfd="docfd --no-pandoc"
 alias sysupdate="brew update && brew upgrade && brew upgrade --cask && brew cleanup"
+alias fj="forgejo.sh"
 
 # Set GCC 14 as default
 alias gcc="gcc-14"
