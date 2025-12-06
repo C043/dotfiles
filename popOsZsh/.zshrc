@@ -41,11 +41,15 @@ export NVM_DIR="$HOME/.nvm"
 
 # Created by `pipx` on 2024-12-16 09:50:43
 export PATH="$PATH:/home/c043/.local/bin"
-export PATH="$PATH:/media/c043/Storage/EPICODE/c043-scripts"
+export PATH="$PATH:/media/c043/Drive/EPICODE/c043-scripts"
 export PATH="$PATH:/home/c043/.platformio/penv/bin"
 export PATH="$PATH:/snap/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export JAVA_HOME="/opt/jdk-21.0.4+7/"
 export PATH="$JAVA_HOME/bin:$PATH"
+
+# Abilita keybindings e completions per fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
