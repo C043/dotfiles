@@ -47,6 +47,7 @@ export PATH="$PATH:/snap/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export JAVA_HOME="/opt/jdk-21.0.4+7/"
 export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/.local/tea/bin:$PATH"
 
 # Abilita keybindings e completions per fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh
