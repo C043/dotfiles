@@ -34,6 +34,7 @@ alias browser="vivaldi.vivaldi-stable"
 alias sysupdate="yes | sudo apt update && yes | sudo apt upgrade && yes | sudo apt autoclean && yes | sudo apt autoremove"
 alias feh="feh --auto-zoom --scale-down"
 alias fj="forgejo.sh"
+alias backup="popOsBackup.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
