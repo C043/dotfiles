@@ -41,6 +41,8 @@ return {
 				typescript = { "prettier", "prettierd", stop_after_first = true },
 				typescriptreact = { "prettier", "prettierd", stop_after_first = true },
 				javascriptreact = { "prettier", "prettierd", stop_after_first = true },
+				css = { "prettier", "prettierd", stop_after_first = true },
+				scss = { "prettier", "prettierd", stop_after_first = true },
 				vue = { "prettier", "prettierd", stop_after_first = true },
 				json = { "prettier", "prettierd", stop_after_first = true },
 				java = { "google-java-format" },

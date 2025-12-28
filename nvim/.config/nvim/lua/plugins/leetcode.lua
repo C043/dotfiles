@@ -13,7 +13,7 @@ return {
 		},
 		opts = {
 			-- configuration goes here
-			lang = "javascript",
+			lang = "python3",
 		},
 	},
 }

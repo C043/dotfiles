@@ -10,6 +10,7 @@ fi
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export EDITOR=vim
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -131,6 +132,9 @@ alias rcopy="rsync -avvzh --update --progress --partial"
 alias img="img.sh"
 alias prod="productivity.sh"
 alias todo="todo.sh"
+alias docfd="docfd --no-pandoc"
+alias sysupdate="brew update && brew upgrade && brew upgrade --cask && brew cleanup"
+alias fj="forgejo.sh"
 
 # Set GCC 14 as default
 alias gcc="gcc-14"
@@ -149,3 +153,6 @@ export PATH="$PATH:/Users/ultramaggot/Documents/GitHub/c043-scripts"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+
+

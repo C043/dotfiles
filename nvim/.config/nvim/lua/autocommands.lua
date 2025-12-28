@@ -47,6 +47,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		local fileName = vim.api.nvim_buf_get_name(0)
 		local filetype = vim.bo.filetype
+		if filetype == "sh" then
+			vim.keymap.set("n", "<leader>rr", function()
+				utils.TerminalOut(fileName)
+			end, { desc = "Execute the current buffer script" })
+		end
 		if filetype == "javascript" then
 			vim.keymap.set("n", "<leader>rr", function()
 				utils.TerminalOut("node " .. fileName)
