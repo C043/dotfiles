@@ -48,6 +48,7 @@ return {
 				java = { "google-java-format" },
 				ejs = { "prettier" },
 				sh = { "shfmt" },
+				c = { "clang-format" },
 				-- NOTE
 				-- Add this in the root file for ejs projects in a .prettierrc
 				-- file:
