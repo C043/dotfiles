@@ -16,3 +16,5 @@ set -o vi
 
 export PATH="$PATH:/home/c043/c043-scripts"
 export PATH=$PATH:/usr/sbin
+
+alias fj="forgejo.sh"
