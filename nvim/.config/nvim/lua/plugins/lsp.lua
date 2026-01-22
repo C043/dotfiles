@@ -18,9 +18,9 @@ return {
 		},
 		opts = {
 			setup = {
-				clangd = function(_, opts)
-					opts.capabilities.offsetEncoding = { "utf-16" }
-				end,
+				clangd = {
+					cmd = { "clangd" },
+				},
 			},
 		},
 		config = function()
@@ -204,7 +204,7 @@ return {
 							},
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 							-- diagnostics = { disable = { 'missing-fields' } },
-					},
+						},
 					},
 				},
 
@@ -227,9 +227,9 @@ return {
 				ts_ls = {},
 
 				-- clangd: set offset-encoding in one place
-				clangd = {
-					cmd = { "clangd", "--offset-encoding=utf-16" },
-				},
+				-- clangd = {
+				-- 	cmd = { "clangd", "--offset-encoding=utf-16" },
+				-- },
 
 				-- jdtls is configured separately in pluginConfigs/nvimJavaConfig.lua
 			}
@@ -257,7 +257,6 @@ return {
 				"tailwindcss",
 				"emmet-language-server",
 				"arduino_language_server",
-				"clangd",
 				"jdtls",
 				"prettier",
 				"prettierd",
