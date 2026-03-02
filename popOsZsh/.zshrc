@@ -36,6 +36,15 @@ alias feh="feh --auto-zoom --scale-down"
 alias fj="forgejo.sh"
 alias backup="popOsBackup.sh"
 
+git() {
+    if [[ "$1" == "push" ]]; then
+      shift
+      pushSwitch.sh "$@"
+    else
+      command git "$@"
+    fi
+  }
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
