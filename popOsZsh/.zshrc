@@ -40,6 +40,9 @@ git() {
     if [[ "$1" == "push" ]]; then
       shift
       pushSwitch.sh "$@"
+    elif [[ "$1" == "pull" ]]; then
+      shift
+      pullSwitch.sh "$@"
     else
       command git "$@"
     fi
