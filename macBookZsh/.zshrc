@@ -136,6 +136,18 @@ alias docfd="docfd --no-pandoc"
 alias sysupdate="brew update && brew upgrade && brew upgrade --cask && brew cleanup"
 alias fj="forgejo.sh"
 
+git() {
+    if [[ "$1" == "push" ]]; then
+      shift
+      pushSwitch.sh "$@"
+    elif [[ "$1" == "pull" ]]; then
+      shift
+      pullSwitch.sh "$@"
+    else
+      command git "$@"
+    fi
+}
+
 # Set GCC 14 as default
 alias gcc="gcc-14"
 alias g++="g++-14"
