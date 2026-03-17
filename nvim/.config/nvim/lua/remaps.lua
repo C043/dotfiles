@@ -25,18 +25,6 @@ vim.keymap.set(
 	{ desc = "Show the call stack of a certain method or function" }
 )
 
-local copilot_on = false
-vim.keymap.set("n", "<leader>ct", function()
-	if copilot_on then
-		vim.cmd("Copilot disable")
-		print("Copilot OFF")
-	else
-		vim.cmd("Copilot enable")
-		print("Copilot ON")
-	end
-	copilot_on = not copilot_on
-end, { desc = "Toggle Copilot" })
-
 local spell_check_on = false
 vim.keymap.set("n", "<leader>sl", function()
 	if spell_check_on then

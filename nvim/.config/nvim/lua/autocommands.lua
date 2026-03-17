@@ -15,7 +15,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		vim.cmd("Copilot disable")
 		local user = os.getenv("USER") or os.getenv("USERNAME")
 		print("Welcome back, " .. user .. "!")
 	end,
