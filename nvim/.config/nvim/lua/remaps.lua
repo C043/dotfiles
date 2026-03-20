@@ -144,12 +144,22 @@ vim.keymap.set("n", "<S-Tab>", "<<")
 
 vim.keymap.set("i", "<Tab>", function()
 	local line = vim.api.nvim_get_current_line()
+
 	if line:match("^%s*$") then
-		return "<Esc>>>i"
-	else
-		return "<Esc>>>A"
+		local sw = vim.fn.shiftwidth()
+		if sw == 0 then
+			sw = vim.o.tabstop
+		end
+
+		if vim.o.expandtab then
+			return string.rep(" ", sw)
+		else
+			return "\t"
+		end
 	end
-end, { expr = true, noremap = true })
+
+	return "<End>"
+end, { expr = true, noremap = true, replace_keycodes = true })
 
 vim.keymap.set("i", "<S-Tab>", function()
 	local line = vim.api.nvim_get_current_line()
