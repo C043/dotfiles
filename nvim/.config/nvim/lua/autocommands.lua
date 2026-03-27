@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 		if filetype == "go" then
 			vim.keymap.set("n", "<leader>rr", function()
-				utils.TerminalOut("go run" .. fileName)
+				utils.TerminalOut("go run " .. fileName)
 			end, { desc = "Execute the current go script" })
 		end
 
