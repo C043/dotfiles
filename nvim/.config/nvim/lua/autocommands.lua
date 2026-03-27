@@ -73,6 +73,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			end, { desc = "Execute the current python script" })
 		end
 
+		if filetype == "go" then
+			vim.keymap.set("n", "<leader>rr", function()
+				utils.TerminalOut("go run" .. fileName)
+			end, { desc = "Execute the current go script" })
+		end
+
+		if filetype == "sh" then
+			vim.keymap.set("n", "<leader>rr", function()
+				utils.TerminalOut("bash " .. fileName)
+			end, { desc = "Execute the current bash script" })
+		end
+
 		if filetype == "cpp" then
 			vim.keymap.set(
 				"n",
