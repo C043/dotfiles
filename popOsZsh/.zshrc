@@ -38,6 +38,12 @@ alias feh="feh --auto-zoom --scale-down"
 alias fj="forgejo.sh"
 alias backup="popOsBackup.sh"
 
+openpdf() {
+    nohup zathura "$@" >/dev/null 2>&1 &
+    disown
+    exit
+}
+
 git() {
     if [[ "$1" == "push" ]]; then
       shift
