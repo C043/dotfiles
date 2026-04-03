@@ -5,6 +5,11 @@ require("noice").setup({
   notify = {
     enabled = false,
   },
+  lsp = {
+    progress = {
+      enabled = false,
+    },
+  },
 })
 
 -- Force Neovim to use its default notification handler instead of Noice's UI
