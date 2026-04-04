@@ -1,5 +1,6 @@
 local highlight_filetypes = {
 	"bash",
+	"python",
 	"c",
 	"diff",
 	"html",
