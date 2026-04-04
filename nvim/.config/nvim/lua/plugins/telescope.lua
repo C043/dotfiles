@@ -24,6 +24,45 @@ return {
 			{ "nvim-tree/nvim-web-devicons", enabled = true },
 		},
 		config = function()
+			local has_ts_configs, ts_configs = pcall(require, "nvim-treesitter.configs")
+			local has_ts_parsers, ts_parsers = pcall(require, "nvim-treesitter.parsers")
+
+			if has_ts_configs and type(ts_configs.is_enabled) ~= "function" then
+				ts_configs.is_enabled = function(_, lang, _)
+					if not lang or lang == "" then
+						return false
+					end
+
+					if vim.treesitter and vim.treesitter.language and vim.treesitter.language.inspect then
+						return pcall(vim.treesitter.language.inspect, lang)
+					end
+
+					return true
+				end
+			end
+
+			if has_ts_configs and type(ts_configs.get_module) ~= "function" then
+				ts_configs.get_module = function(module)
+					if module == "highlight" then
+						return {
+							additional_vim_regex_highlighting = false,
+						}
+					end
+
+					return {}
+				end
+			end
+
+			if has_ts_parsers and type(ts_parsers.ft_to_lang) ~= "function" then
+				ts_parsers.ft_to_lang = function(ft)
+					if vim.treesitter and vim.treesitter.language and vim.treesitter.language.get_lang then
+						return vim.treesitter.language.get_lang(ft) or ft
+					end
+
+					return ft
+				end
+			end
+
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
 			-- it can fuzzy find! It's more than just a "file finder", it can search
 			-- many different aspects of Neovim, your workspace, LSP, and more!
@@ -49,11 +88,14 @@ return {
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
+				defaults = {
+					preview = {
+						treesitter = false,
+					},
+					-- mappings = {
+					--   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+					-- },
+				},
 				-- pickers = {}
 				extensions = {
 					["ui-select"] = {
