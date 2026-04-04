@@ -9,6 +9,9 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Keep Vim's built-in syntax highlighting available as a fallback.
+vim.cmd.syntax("enable")
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
