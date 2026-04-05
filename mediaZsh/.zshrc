@@ -21,4 +21,5 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/GitHub/c043-scripts:$PATH"
 
