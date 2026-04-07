@@ -1,4 +1,5 @@
 require("platformio").setup({
-	lsp = "clangd", --default: ccls, other option: clangd
-	-- If you pick clangd, it also creates compile_commands.json
+	lsp = "clangd",
+	clangd_source = "compiledb", -- valid values: "ccls" | "compiledb"
+	-- "compiledb" generates compile_commands.json for clangd
 })
