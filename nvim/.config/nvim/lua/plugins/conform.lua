@@ -49,6 +49,7 @@ return {
 				java = { "google-java-format" },
 				ejs = { "prettier" },
 				sh = { "shfmt", "beautysh" },
+				zsh = { "shfmt", "beautysh" },
 				c = { "clang-format" },
 				go = { "goimports" },
 				-- NOTE
