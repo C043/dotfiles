@@ -48,6 +48,17 @@ vim.api.nvim_create_user_command("ToggleCheckbox", function()
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
 				return indent .. "- [ ] "
 			end
+
+			local content = line:sub(#indent + 1)
+			local ordered_prefix = content:match("^(%d+%.%s*)")
+			if ordered_prefix then
+				content = content:gsub("^%d+%.%s*", "", 1)
+				return indent .. ordered_prefix .. "[ ] " .. content
+			end
+
+			content = content:gsub("^%-+%s*", "", 1)
+			content = content:gsub("^%*+%s*", "", 1)
+			return indent .. "- [ ] " .. content
 		end,
 	}
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -61,7 +72,9 @@ vim.api.nvim_create_user_command("ToggleCheckbox", function()
 
 	if not line_with_checkbox(current_line) then
 		new_line = checkbox.make_checkbox(current_line)
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>A", true, false, true), "n", true)
+		if current_line:match("^%s*$") then
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>A", true, false, true), "n", true)
+		end
 	elseif line_contains_unchecked(current_line) then
 		new_line = checkbox.check(current_line)
 	elseif line_contains_checked(current_line) then
