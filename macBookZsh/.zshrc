@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -118,7 +118,7 @@ export LC_ALL=en_US.UTF-8
 
 export JAVA_HOME="/opt/homebrew/Cellar/openjdk@21/21.0.6/libexec/openjdk.jdk/Contents/Home"
 export QT_PLUGIN_PATH="/System/Volumes/Data/Applications/OpenSCAD-2021.01.app/Contents/PlugIns"
-export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH" 
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 
 setopt CORRECT
@@ -140,14 +140,20 @@ alias fj="forgejo.sh"
 
 git() {
     if [[ "$1" == "push" ]]; then
-      shift
-      pushSwitch.sh "$@"
+        shift
+        pushSwitch.sh "$@"
     elif [[ "$1" == "pull" ]]; then
-      shift
-      pullSwitch.sh "$@"
+        shift
+        pullSwitch.sh "$@"
     else
-      command git "$@"
+        command git "$@"
     fi
+}
+
+openpdf() {
+    nohup zathura "$@" >/dev/null 2>&1 &
+    disown
+    exit
 }
 
 # Set GCC 14 as default
