@@ -48,6 +48,7 @@ return {
 				jsonc = { "prettierd", "prettier", stop_after_first = true },
 				java = { "google-java-format" },
 				ejs = { "prettier" },
+				html = { "prettier" },
 				sh = { "shfmt", "beautysh" },
 				zsh = { "shfmt", "beautysh" },
 				c = { "clang-format" },
