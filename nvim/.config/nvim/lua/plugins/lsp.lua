@@ -170,6 +170,24 @@ return {
 			-- Apply default capabilities to all servers
 			vim.lsp.config("*", { capabilities = capabilities })
 
+			local vue_language_server_path =
+				vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+			local ts_ls_filetypes = {
+				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
+				"vue",
+			}
+			local vue_typescript_plugin = {
+				name = "@vue/typescript-plugin",
+				location = vue_language_server_path,
+				languages = { "vue" },
+				configNamespace = "typescript",
+			}
+
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -234,7 +252,18 @@ return {
 
 				tailwindcss = {},
 
-				ts_ls = {},
+				ts_ls = {
+					init_options = {
+						plugins = {
+							vue_typescript_plugin,
+						},
+					},
+					filetypes = ts_ls_filetypes,
+				},
+
+				vue_ls = {
+					filetypes = { "vue" },
+				},
 
 				-- clangd: set offset-encoding in one place
 				-- clangd = {
