@@ -2,12 +2,21 @@ return {
 	{
 		"c043/dashboard-nvim",
 		event = "VimEnter",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+			{ "amansingh-afk/milli.nvim" },
+		},
 		config = function()
+			local splash = require("milli").load({ splash = "blackhole" })
 			require("dashboard").setup({
 				theme = "hyper",
 				config = {
+					header = splash.frames[1],
 					week_header = {
-						enable = true,
+						enable = false,
+					},
+					project = {
+						enable = false,
 					},
 					disable_move = true,
 					shortcut = {
@@ -38,7 +47,7 @@ return {
 					},
 				},
 			})
+			require("milli").dashboard({ splash = "blackhole", loop = true })
 		end,
-		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 }
