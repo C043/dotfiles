@@ -67,14 +67,14 @@ return {
 				--   ]
 				-- }
 			},
-			formatters = {
-				prettier = {
-					prepend_args = {
-						"--config",
-						vim.fn.expand("~/.config/prettier/.prettierrc"),
-					},
-				},
-			},
+			-- 	formatters = {
+			-- 		prettier = {
+			-- 			prepend_args = {
+			-- 				"--config",
+			-- 				vim.fn.expand("~/.config/prettier/.prettierrc"),
+			-- 			},
+			-- 		},
+			-- 	},
 		},
 	},
 }
