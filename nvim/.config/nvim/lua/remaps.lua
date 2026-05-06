@@ -117,15 +117,6 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<C-1>", "<Cmd>BufferGoto 1<CR>")
-vim.keymap.set("n", "<C-2>", "<Cmd>BufferGoto 2<CR>")
-vim.keymap.set("n", "<C-3>", "<Cmd>BufferGoto 3<CR>")
-vim.keymap.set("n", "<C-4>", "<Cmd>BufferGoto 4<CR>")
-vim.keymap.set("n", "<C-5>", "<Cmd>BufferGoto 5<CR>")
-vim.keymap.set("n", "<C-6>", "<Cmd>BufferGoto 6<CR>")
-vim.keymap.set("n", "<C-7>", "<Cmd>BufferGoto 7<CR>")
-vim.keymap.set("n", "<C-8>", "<Cmd>BufferGoto 8<CR>")
-vim.keymap.set("n", "<C-9>", "<Cmd>BufferGoto 9<CR>")
 vim.keymap.set("n", "<C-0>", "<cmd>Dashboard<CR>", { desc = "Open DashBoard" })
 
 -- Visual Mode
