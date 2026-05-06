@@ -51,8 +51,6 @@ vim.keymap.set("n", "<leader>w", "gqap", { desc = "Format Paragraph" })
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>qq", "<cmd>BufferClose<CR>")
-vim.keymap.set("n", "<C-q>", "<cmd>BufferClose<CR>")
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Clear highlights on search when pressing <Esc> in normal mode
