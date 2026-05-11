@@ -7,6 +7,9 @@ return {
 			messages = {
 				enabled = false,
 			},
+			popupmenu = {
+				enabled = false,
+			},
 			notify = {
 				enabled = false,
 			},
@@ -14,6 +17,9 @@ return {
 				progress = {
 					enabled = false,
 				},
+			},
+			presets = {
+				long_message_to_split = true,
 			},
 		},
 		dependencies = {
