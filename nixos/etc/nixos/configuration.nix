@@ -66,15 +66,9 @@
     powerManagement.finegrained = false;
   };
 
-  # Hyprland session.
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -93,15 +87,29 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    pulse.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    extraConfig.pipewire-pulse."51-razer-softvol" = {
+      "pulse.cmd" = [
+        {
+          cmd = "load-module";
+          args = "module-null-sink sink_name=razer_soft sink_properties=device.description=Razer_Software_Volume";
+          flags = [ "nofail" ];
+        }
+        {
+          cmd = "load-module";
+          args = "module-loopback source=razer_soft.monitor sink=alsa_output.usb-Razer_Razer_Leviathan_V2_X_000000000000000-01.analog-stereo latency_msec=20";
+          flags = [ "nofail" ];
+        }
+        {
+          cmd = "set-default-sink";
+          args = "razer_soft";
+          flags = [ "nofail" ];
+        }
+      ];
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -116,6 +124,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "udev"
     ];
     packages = with pkgs; [
       #  thunderbird
@@ -137,26 +146,34 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.nix-ld.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.pop-shell
+    gnome-extension-manager
+    gnome-tweaks
     stow
     zsh
     pciutils
     git
     gh
-tea
+    tea
     tailscale
+    tmux
     docker-compose
+    obsidian
     wget
     curl
+    vial
+    via
     vim
     kitty
     waybar
     wofi
     mako
-    hyprpaper
-    hyprlock
     grim
     slurp
     wl-clipboard
@@ -168,6 +185,7 @@ tea
     python3Packages.pip
     vivaldi
     google-chrome
+    chromium
     discord
     unzip
     platformio
@@ -176,10 +194,20 @@ tea
     go
     gcc
     ripgrep
+    zathura
+    spotify
+    pulseaudio
   ];
   programs.zsh.enable = true;
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
+
+  services.udev.extraRules = ''
+    # VIA / Vial keyboards via hidraw
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev", TAG+="uaccess", TAG+="udev-acl"
+  '';
+
+  users.groups.plugdev = { };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
