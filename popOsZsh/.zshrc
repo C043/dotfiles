@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k" # set by `omz`
 DEFAULT_USER=$USER
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
-source /etc/zsh_command_not_found
+[[ -r /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -69,9 +69,15 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export JAVA_HOME="/opt/jdk-21.0.4+7/"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/.local/tea/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # Abilita keybindings e completions per fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# fzf integration on NixOS
+if command -v fzf >/dev/null 2>&1; then
+    fzf_base="$(dirname "$(dirname "$(readlink -f "$(command -v fzf)")")")"
+
+    [[ -r "$fzf_base/share/fzf/key-bindings.zsh" ]] && source "$fzf_base/share/fzf/key-bindings.zsh"
+    [[ -r "$fzf_base/share/fzf/completion.zsh" ]] && source "$fzf_base/share/fzf/completion.zsh"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
