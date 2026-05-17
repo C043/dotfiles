@@ -1,24 +1,41 @@
-alsa_monitor.rules = alsa_monitor.rules or {}
+services.pipewire = {
+  enable = true;
+  pulse.enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
 
-table.insert(alsa_monitor.rules, {
-  matches = {
-    {
-      { "device.name", "equals", "alsa_card.usb-Razer_Razer_Leviathan_V2_X_000000000000000-01" },
-    },
-  },
-  apply_properties = {
-    ["api.alsa.use-acp"] = false,
-    ["api.alsa.soft-mixer"] = true,
-  },
-})
-
-table.insert(alsa_monitor.rules, {
-  matches = {
-    {
-      { "node.name", "equals", "alsa_output.usb-Razer_Razer_Leviathan_V2_X_000000000000000-01.analog-stereo" },
-    },
-  },
-  apply_properties = {
-    ["api.alsa.soft-mixer"] = true,
-  },
-})
+  wireplumber = {
+    enable = true;
+    extraConfig = {
+      "51-razer-softvol" = {
+        "monitor.alsa.rules" = [
+          {
+            matches = [
+              {
+                "device.name" = "alsa_card.usb-Razer_Razer_Leviathan_V2_X_000000000000000-01";
+              }
+            ];
+            actions = {
+              update-props = {
+                "api.alsa.soft-mixer" = true;
+                "api.alsa.ignore-db" = true;
+              };
+            };
+          }
+          {
+            matches = [
+              {
+                "node.name" = "alsa_output.usb-Razer_Razer_Leviathan_V2_X_000000000000000-01.analog-stereo";
+              }
+            ];
+            actions = {
+              update-props = {
+                "api.alsa.soft-mixer" = true;
+              };
+            };
+          }
+        ];
+      };
+    };
+  };
+};
