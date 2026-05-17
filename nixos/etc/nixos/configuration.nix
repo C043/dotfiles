@@ -181,7 +181,6 @@
     fzf
     nodejs_22
     claude-code
-    codex
     neovim
     python3
     python3Packages.pip
@@ -199,6 +198,7 @@
     zathura
     spotify
     pulseaudio
+    wl-clipboard
   ];
   programs.zsh.enable = true;
   services.tailscale.enable = true;
