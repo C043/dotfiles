@@ -180,6 +180,8 @@
     nixfmt-rfc-style
     fzf
     nodejs_22
+    claude-code
+    codex
     neovim
     python3
     python3Packages.pip

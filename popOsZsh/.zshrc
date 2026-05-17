@@ -33,10 +33,10 @@ alias todo="todo.sh"
 alias newsletter="newsletter.sh"
 alias vault="vault.sh"
 alias browser="vivaldi.vivaldi-stable"
-alias sysupdate="yes | sudo apt update && yes | sudo apt upgrade && yes | sudo apt autoclean && yes | sudo apt autoremove"
+alias sysupdate="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade"
+alias pruneNix="sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-store --gc"
 alias feh="feh --auto-zoom --scale-down"
 alias fj="forgejo.sh"
-alias backup="popOsBackup.sh"
 
 openpdf() {
     nohup zathura "$@" >/dev/null 2>&1 &
