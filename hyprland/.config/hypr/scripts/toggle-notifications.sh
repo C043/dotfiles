@@ -16,4 +16,4 @@ printf '%s\n' "$notifications" | wofi \
     --lines 12 \
     --width 520 \
     --hide-scroll \
-    --style /home/c043/.config/hypr/wofi/calendar.css >/dev/null
+    --style "$HOME/.config/hypr/wofi/calendar.css" >/dev/null

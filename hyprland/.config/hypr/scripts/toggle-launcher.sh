@@ -9,4 +9,4 @@ exec wofi \
     --prompt "Launch" \
     --allow-images \
     --insensitive \
-    --style /home/c043/.config/hypr/wofi/style.css
+    --style "$HOME/.config/hypr/wofi/style.css"

@@ -8,7 +8,7 @@
   "margin-right": 10,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "tray", "custom/system-settings", "custom/power"],
+  "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "custom/notifications-clear", "tray", "custom/system-settings", "custom/power"],
   "hyprland/workspaces": {
     "format": "{name}",
     "active-only": false,
@@ -22,7 +22,7 @@
   "clock": {
     "format": "  {:%a %d %b  %H:%M}",
     "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt>{calendar}</tt>",
-    "on-click": "/home/c043/.config/hypr/scripts/toggle-calendar.sh"
+    "on-click": "$HOME/.config/hypr/scripts/toggle-calendar.sh"
   },
   "cpu": {
     "format": "CPU {usage}%",
@@ -37,31 +37,37 @@
     "format-ethernet": "Ethernet",
     "format-disconnected": "Offline",
     "tooltip-format": "{ifname} via {gwaddr}",
-    "on-click": "/home/c043/.config/hypr/scripts/open-gnome-settings.sh network"
+    "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh network"
   },
   "custom/system-settings": {
     "format": "",
     "tooltip": true,
     "tooltip-format": "Settings",
-    "on-click": "/home/c043/.config/hypr/scripts/open-gnome-settings.sh"
+    "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh"
   },
   "custom/notifications": {
     "format": "",
     "tooltip": true,
     "tooltip-format": "Notifications",
-    "on-click": "/home/c043/.config/hypr/scripts/toggle-notifications.sh"
+    "on-click": "$HOME/.config/hypr/scripts/toggle-notifications.sh"
+  },
+  "custom/notifications-clear": {
+    "format": "󰎟",
+    "tooltip": true,
+    "tooltip-format": "Clear notifications",
+    "on-click": "$HOME/.config/hypr/scripts/clear-notifications.sh"
   },
   "custom/power": {
     "format": "",
     "tooltip": true,
     "tooltip-format": "Power",
-    "on-click": "/home/c043/.config/hypr/scripts/toggle-power-menu.sh"
+    "on-click": "$HOME/.config/hypr/scripts/toggle-power-menu.sh"
   },
   "pulseaudio": {
     "format": "{volume}%",
     "format-muted": "Muted",
     "format-bluetooth": "{volume}% BT",
-    "on-click": "/home/c043/.config/hypr/scripts/select-audio-sink.sh",
+    "on-click": "$HOME/.config/hypr/scripts/select-audio-sink.sh",
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "tooltip-format": "{desc}",
     "scroll-step": 5

@@ -10,7 +10,7 @@ choice="$(printf '%s\n' "Lock" "Logout" "Reboot" "Shutdown" | wofi \
     --lines 4 \
     --width 320 \
     --hide-scroll \
-    --style /home/c043/.config/hypr/wofi/calendar.css)"
+    --style "$HOME/.config/hypr/wofi/calendar.css")"
 
 case "$choice" in
     Lock)
