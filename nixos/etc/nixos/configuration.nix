@@ -208,6 +208,7 @@
     spotify
     pulseaudio
     playerctl
+    swayosd
     wl-clipboard
   ];
   programs.zsh.enable = true;
