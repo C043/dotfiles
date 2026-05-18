@@ -58,7 +58,7 @@
     "on-click": "$HOME/.config/hypr/scripts/toggle-power-menu.sh"
   },
   "pulseaudio": {
-    "format": "{volume}%",
+    "format": "  {volume}%",
     "format-muted": "Muted",
     "format-bluetooth": "{volume}% BT",
     "on-click": "$HOME/.config/hypr/scripts/select-audio-sink.sh",
@@ -68,9 +68,10 @@
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
-    "format-source": "Mic {volume}%",
-    "format-source-muted": "Mic muted",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "format-source": "  {volume}%",
+    "format-source-muted": "  muted",
+    "on-click": "$HOME/.config/hypr/scripts/select-audio-source.sh",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "tooltip-format": "{source_desc}",
     "scroll-step": 5
   },
