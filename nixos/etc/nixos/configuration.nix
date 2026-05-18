@@ -155,8 +155,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    hyprland
-    xdg-desktop-portal-hyprland
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.unblank
@@ -179,6 +177,9 @@
     via
     vim
     kitty
+    hyprlock
+    hyprpaper
+    nixos-artwork.wallpapers.nineish-dark-gray
     waybar
     wofi
     mako
