@@ -207,6 +207,7 @@
     zathura
     spotify
     pulseaudio
+    playerctl
     wl-clipboard
   ];
   programs.zsh.enable = true;
