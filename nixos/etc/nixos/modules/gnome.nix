@@ -7,8 +7,6 @@
 
   environment.systemPackages = with pkgs; [
     gnomeExtensions.blur-my-shell
-    gnomeExtensions.pop-shell
-    gnomeExtensions.unblank
     gnome-extension-manager
     gnome-tweaks
   ];
