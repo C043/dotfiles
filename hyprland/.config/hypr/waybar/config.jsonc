@@ -1,83 +1,158 @@
-{
-  "layer": "top",
-  "position": "top",
-  "height": 38,
-  "spacing": 10,
-  "margin-top": 8,
-  "margin-left": 10,
-  "margin-right": 10,
-  "output": "DP-3",
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "tray", "custom/system-settings", "custom/power"],
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "active-only": false,
-    "all-outputs": false,
-    "on-click": "activate"
+[
+  {
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "spacing": 10,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "output": "DP-3",
+    "modules-left": [
+      "hyprland/workspaces",
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "clock"
+    ],
+    "modules-right": [
+      "cpu",
+      "memory",
+      "network",
+      "pulseaudio#microphone",
+      "pulseaudio",
+      "custom/notifications",
+      "tray",
+      "custom/system-settings",
+      "custom/power"
+    ],
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "active-only": false,
+      "all-outputs": false,
+      "on-click": "activate"
+    },
+    "hyprland/window": {
+      "max-length": 70,
+      "separate-outputs": true
+    },
+    "clock": {
+      "format": "  {:%a %d %b  %H:%M}",
+      "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt>{calendar}</tt>",
+      "on-click": "$HOME/.config/hypr/scripts/toggle-calendar.sh"
+    },
+    "cpu": {
+      "format": "CPU {usage}%",
+      "tooltip": false
+    },
+    "memory": {
+      "format": "RAM {}%",
+      "tooltip": false
+    },
+    "network": {
+      "format-wifi": "{essid}  {signalStrength}%",
+      "format-ethernet": "Ethernet",
+      "format-disconnected": "Offline",
+      "tooltip-format": "{ifname} via {gwaddr}",
+      "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh network"
+    },
+    "custom/system-settings": {
+      "format": "",
+      "tooltip": true,
+      "tooltip-format": "Settings",
+      "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh"
+    },
+    "custom/notifications": {
+      "exec": "$HOME/.config/hypr/scripts/notification-status.sh",
+      "return-type": "json",
+      "interval": 60,
+      "signal": 1,
+      "on-click": "$HOME/.config/hypr/scripts/toggle-dnd.sh",
+      "on-click-right": "$HOME/.config/hypr/scripts/toggle-notifications.sh"
+    },
+    "custom/power": {
+      "format": "",
+      "tooltip": true,
+      "tooltip-format": "Power",
+      "on-click": "$HOME/.config/hypr/scripts/toggle-power-menu.sh"
+    },
+    "pulseaudio": {
+      "format": "  {volume}%",
+      "format-muted": "Muted",
+      "format-bluetooth": "{volume}% BT",
+      "on-click": "$HOME/.config/hypr/scripts/select-audio-sink.sh",
+      "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "tooltip-format": "{desc}",
+      "scroll-step": 5
+    },
+    "pulseaudio#microphone": {
+      "format": "{format_source}",
+      "format-source": "  {volume}%",
+      "format-source-muted": "  muted",
+      "on-click": "$HOME/.config/hypr/scripts/select-audio-source.sh",
+      "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+      "tooltip-format": "{source_desc}",
+      "scroll-step": 5
+    },
+    "tray": {
+      "spacing": 0
+    }
   },
-  "hyprland/window": {
-    "max-length": 70,
-    "separate-outputs": true
+  {
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "spacing": 10,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "output": "HDMI-A-1",
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "active-only": false,
+      "all-outputs": false,
+      "on-click": "activate"
+    }
   },
-  "clock": {
-    "format": "  {:%a %d %b  %H:%M}",
-    "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt>{calendar}</tt>",
-    "on-click": "$HOME/.config/hypr/scripts/toggle-calendar.sh"
+  {
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "spacing": 10,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "output": "DP-1",
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "active-only": false,
+      "all-outputs": false,
+      "on-click": "activate"
+    }
   },
-  "cpu": {
-    "format": "CPU {usage}%",
-    "tooltip": false
-  },
-  "memory": {
-    "format": "RAM {}%",
-    "tooltip": false
-  },
-  "network": {
-    "format-wifi": "{essid}  {signalStrength}%",
-    "format-ethernet": "Ethernet",
-    "format-disconnected": "Offline",
-    "tooltip-format": "{ifname} via {gwaddr}",
-    "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh network"
-  },
-  "custom/system-settings": {
-    "format": "",
-    "tooltip": true,
-    "tooltip-format": "Settings",
-    "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh"
-  },
-  "custom/notifications": {
-    "exec": "$HOME/.config/hypr/scripts/notification-status.sh",
-    "interval": 60,
-    "signal": 1,
-    "on-click": "$HOME/.config/hypr/scripts/toggle-dnd.sh",
-    "on-click-right": "$HOME/.config/hypr/scripts/toggle-notifications.sh"
-  },
-  "custom/power": {
-    "format": "",
-    "tooltip": true,
-    "tooltip-format": "Power",
-    "on-click": "$HOME/.config/hypr/scripts/toggle-power-menu.sh"
-  },
-  "pulseaudio": {
-    "format": "  {volume}%",
-    "format-muted": "Muted",
-    "format-bluetooth": "{volume}% BT",
-    "on-click": "$HOME/.config/hypr/scripts/select-audio-sink.sh",
-    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "tooltip-format": "{desc}",
-    "scroll-step": 5
-  },
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": "  {volume}%",
-    "format-source-muted": "  muted",
-    "on-click": "$HOME/.config/hypr/scripts/select-audio-source.sh",
-    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "tooltip-format": "{source_desc}",
-    "scroll-step": 5
-  },
-  "tray": {
-    "spacing": 0
+  {
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "spacing": 10,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "output": "DP-2",
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "active-only": false,
+      "all-outputs": false,
+      "on-click": "activate"
+    }
   }
-}
+]
