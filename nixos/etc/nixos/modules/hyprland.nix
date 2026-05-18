@@ -11,6 +11,7 @@
     mako
     grim
     slurp
+    hyprshot
     wl-clipboard
     swayosd
     playerctl
