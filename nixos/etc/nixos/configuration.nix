@@ -153,6 +153,7 @@
   environment.systemPackages = with pkgs; [
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
+    gnomeExtensions.unblank
     gnome-extension-manager
     gnome-tweaks
     stow
@@ -180,6 +181,7 @@
     nixfmt-rfc-style
     fzf
     nodejs_22
+    pnpm
     claude-code
     neovim
     python3
