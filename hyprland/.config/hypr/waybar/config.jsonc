@@ -8,7 +8,7 @@
   "margin-right": 10,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "custom/notifications-clear", "tray", "custom/system-settings", "custom/power"],
+  "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "tray", "custom/system-settings", "custom/power"],
   "hyprland/workspaces": {
     "format": "{name}",
     "active-only": false,
@@ -50,12 +50,6 @@
     "tooltip": true,
     "tooltip-format": "Notifications",
     "on-click": "$HOME/.config/hypr/scripts/toggle-notifications.sh"
-  },
-  "custom/notifications-clear": {
-    "format": "󰎟",
-    "tooltip": true,
-    "tooltip-format": "Clear notifications",
-    "on-click": "$HOME/.config/hypr/scripts/clear-notifications.sh"
   },
   "custom/power": {
     "format": "",

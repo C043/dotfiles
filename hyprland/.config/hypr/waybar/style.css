@@ -26,7 +26,6 @@ tooltip label {
 #memory,
 #network,
 #custom-notifications,
-#custom-notifications-clear,
 #custom-system-settings,
 #custom-power,
 #pulseaudio.microphone,
@@ -73,7 +72,6 @@ tooltip label {
 }
 
 #custom-notifications,
-#custom-notifications-clear,
 #custom-system-settings,
 #custom-power {
     color: #eceff4;
