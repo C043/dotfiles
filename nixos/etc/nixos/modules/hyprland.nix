@@ -12,6 +12,7 @@
     grim
     slurp
     hyprshot
+    imv
     wl-clipboard
     swayosd
     playerctl
