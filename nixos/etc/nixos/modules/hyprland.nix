@@ -13,6 +13,7 @@
     slurp
     hyprshot
     imv
+    libreoffice
     wl-clipboard
     swayosd
     playerctl
