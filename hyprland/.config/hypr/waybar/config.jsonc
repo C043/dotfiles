@@ -6,6 +6,7 @@
   "margin-top": 8,
   "margin-left": 10,
   "margin-right": 10,
+  "output": "DP-3",
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
   "modules-right": ["cpu", "memory", "network", "pulseaudio#microphone", "pulseaudio", "custom/notifications", "tray", "custom/system-settings", "custom/power"],
