@@ -71,6 +71,9 @@
   services.displayManager.gdm.autoSuspend = false;
   services.desktopManager.gnome.enable = true;
 
+  # Keep GNOME as the default shell, but install Hyprland as an alternate session.
+  programs.hyprland.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "it";
@@ -152,6 +155,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    hyprland
+    xdg-desktop-portal-hyprland
     gnomeExtensions.blur-my-shell
     gnomeExtensions.pop-shell
     gnomeExtensions.unblank
@@ -161,6 +166,7 @@
     zsh
     pciutils
     git
+    gitflow
     gh
     tea
     tailscale
@@ -183,7 +189,6 @@
     fzf
     nodejs_22
     pnpm
-    claude-code
     neovim
     python3
     python3Packages.pip

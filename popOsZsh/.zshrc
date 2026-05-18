@@ -60,6 +60,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export EDITOR=vim
+
 # Created by `pipx` on 2024-12-16 09:50:43
 export PATH="$PATH:/home/c043/.local/bin"
 export PATH="$PATH:/run/media/c043/Drive/EPICODE/c043-scripts"
