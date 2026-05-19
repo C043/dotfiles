@@ -18,6 +18,11 @@
     outline: none;
 }
 
+.control-center row:selected,
+.control-center row:focus {
+    background: transparent;
+}
+
 .notification {
     background: rgba(30, 41, 59, 0.9);
     border: 1px solid rgba(94, 129, 172, 0.25);
