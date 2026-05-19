@@ -37,8 +37,3 @@ source_name=$(awk -F'\t' -v desc="$chosen_desc" '$2 == desc { print $1; exit }' 
 [ -n "$source_name" ] || exit 1
 
 pactl set-default-source "$source_name"
-
-pactl list short source-outputs 2>/dev/null | awk '{print $1}' | while read -r output_id; do
-    [ -n "$output_id" ] || continue
-    pactl move-source-output "$output_id" "$source_name"
-done
