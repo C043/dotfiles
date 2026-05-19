@@ -24,6 +24,7 @@
     htop
     lsof
     jq
+    yazi
 
     # Git
     git
