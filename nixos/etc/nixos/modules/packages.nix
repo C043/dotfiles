@@ -22,6 +22,7 @@
     pciutils
     pulseaudio
     htop
+    lsof
 
     # Git
     git
