@@ -4,25 +4,31 @@ if pgrep -af 'wofi.*Power' >/dev/null 2>&1; then
     exec pkill -f 'wofi.*Power'
 fi
 
-choice="$(printf '%s\n' "Lock" "Logout" "Reboot" "Shutdown" | wofi \
+choice="$(printf '%s\n' \
+    "  Lock" \
+    "  Logout" \
+    "  Reboot" \
+    "  Shutdown" \
+    | wofi \
     --dmenu \
     --prompt "Power" \
     --lines 4 \
-    --width 320 \
+    --width 380 \
     --hide-scroll \
-    --style "$HOME/.config/hypr/wofi/calendar.css")"
+    --insensitive \
+    --style "$HOME/.config/hypr/wofi/power.css")"
 
 case "$choice" in
-    Lock)
+    *Lock)
         exec hyprlock
         ;;
-    Logout)
+    *Logout)
         exec hyprctl dispatch exit
         ;;
-    Reboot)
+    *Reboot)
         exec systemctl reboot
         ;;
-    Shutdown)
+    *Shutdown)
         exec systemctl poweroff
         ;;
 esac
