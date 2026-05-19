@@ -97,10 +97,14 @@ tooltip label {
 #tray > .passive,
 #tray > .active,
 #tray > .needs-attention {
-    padding: 0 5px;
+    padding: 0 14px;
     background: rgba(17, 24, 39, 0.9);
     border-top: 1px solid rgba(94, 129, 172, 0.35);
     border-bottom: 1px solid rgba(94, 129, 172, 0.35);
+}
+
+#tray image {
+    padding: 0 14px;
 }
 
 #tray > *:first-child {
