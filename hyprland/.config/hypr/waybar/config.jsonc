@@ -63,12 +63,24 @@
       "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh"
     },
     "custom/notifications": {
-      "exec": "$HOME/.config/hypr/scripts/notification-status.sh",
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+        "notification": "<span foreground='white'>󰂚</span>",
+        "none": "󰂚",
+        "dnd-notification": "<span foreground='#bf616a'>󰂛</span>",
+        "dnd-none": "<span foreground='#bf616a'>󰂛</span>",
+        "inhibited-notification": "󰂚",
+        "inhibited-none": "󰂚",
+        "dnd-inhibited-notification": "<span foreground='#bf616a'>󰂛</span>",
+        "dnd-inhibited-none": "<span foreground='#bf616a'>󰂛</span>"
+      },
       "return-type": "json",
-      "interval": 60,
-      "signal": 1,
-      "on-click": "$HOME/.config/hypr/scripts/toggle-dnd.sh",
-      "on-click-right": "$HOME/.config/hypr/scripts/toggle-notifications.sh"
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
     },
     "custom/power": {
       "format": "",

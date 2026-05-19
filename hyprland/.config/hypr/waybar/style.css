@@ -82,7 +82,6 @@ tooltip label {
 }
 
 #network.disconnected,
-#custom-notifications.dnd,
 #pulseaudio.microphone.source-muted,
 #pulseaudio.muted {
     color: #bf616a;

@@ -9,7 +9,7 @@
     hyprpaper
     waybar
     wofi
-    mako
+    swaynotificationcenter
     grim
     slurp
     hyprshot
