@@ -20,10 +20,10 @@ pactl list sources 2>/dev/null | awk -F': ' '
 ' > "$tmpfile"
 
 selection=$(
-    awk -F'\t' -v default_source="$default_source" '{
-        if ($1 == default_source) printf "Default  %s\n", $2
-        else print $2
-    }' "$tmpfile" | wofi \
+    awk -F'\t' -v default_source="$default_source" '
+        { if ($1 == default_source) def = "Default  " $2; else rest[++n] = $2 }
+        END { if (def) print def; for (i = 1; i <= n; i++) print rest[i] }
+    ' "$tmpfile" | wofi \
         --dmenu \
         --prompt "Audio input" \
         --insensitive \
