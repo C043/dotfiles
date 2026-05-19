@@ -21,6 +21,7 @@
     tmux
     pciutils
     pulseaudio
+    htop
 
     # Git
     git
