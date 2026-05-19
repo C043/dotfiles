@@ -23,6 +23,7 @@
     pulseaudio
     htop
     lsof
+    jq
 
     # Git
     git
