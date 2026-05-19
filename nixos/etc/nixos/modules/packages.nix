@@ -50,6 +50,7 @@
     discord
     spotify
     zathura
+    telegram-desktop
 
     # Fonts
     jetbrains-mono
