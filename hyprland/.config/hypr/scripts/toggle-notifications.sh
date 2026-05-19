@@ -14,10 +14,8 @@ menu="$(printf '%s\n' \
 selection="$(printf '%s\n' "$menu" | wofi \
     --dmenu \
     --prompt "Notifications" \
-    --lines 12 \
-    --width 520 \
-    --hide-scroll \
-    --style "$HOME/.config/hypr/wofi/calendar.css")"
+    --insensitive \
+    --style "$HOME/.config/hypr/wofi/style.css")"
 
 if [ "$selection" = 'Clear all notifications' ]; then
     makoctl dismiss --all --no-history
