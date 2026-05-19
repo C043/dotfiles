@@ -34,7 +34,7 @@ alias newsletter="newsletter.sh"
 alias vault="vault.sh"
 alias browser="vivaldi.vivaldi-stable"
 alias sysupdate="sudo nix-channel --update && sudo nixos-rebuild switch --upgrade"
-alias pruneNix="sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-store --gc"
+alias prunNix="sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-store --gc"
 alias feh="feh --auto-zoom --scale-down"
 alias fj="forgejo.sh"
 
