@@ -19,10 +19,10 @@
       "cpu",
       "memory",
       "network",
+      "tray",
       "pulseaudio#microphone",
       "pulseaudio",
       "custom/notifications",
-      "tray",
       "custom/system-settings",
       "custom/power"
     ],

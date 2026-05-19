@@ -88,16 +88,31 @@ tooltip label {
 }
 
 #tray {
-    padding: 0 10px;
-    border: 1px solid rgba(94, 129, 172, 0.35);
-    border-radius: 14px;
-    background: rgba(17, 24, 39, 0.9);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
 }
 
 #tray > .passive,
 #tray > .active,
 #tray > .needs-attention {
-    padding: 0;
-    border: none;
-    background: transparent;
+    padding: 0 5px;
+    background: rgba(17, 24, 39, 0.9);
+    border-top: 1px solid rgba(94, 129, 172, 0.35);
+    border-bottom: 1px solid rgba(94, 129, 172, 0.35);
+}
+
+#tray > *:first-child {
+    padding-left: 10px;
+    border-left: 1px solid rgba(94, 129, 172, 0.35);
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+
+#tray > *:last-child {
+    padding-right: 10px;
+    border-right: 1px solid rgba(94, 129, 172, 0.35);
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
