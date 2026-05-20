@@ -120,13 +120,18 @@
     "margin-right": 10,
     "output": "HDMI-A-1",
     "modules-left": [
-      "hyprland/workspaces"
+      "hyprland/workspaces",
+      "hyprland/window"
     ],
     "hyprland/workspaces": {
       "format": "{name}",
       "active-only": false,
       "all-outputs": false,
       "on-click": "activate"
+    },
+    "hyprland/window": {
+      "max-length": 70,
+      "separate-outputs": true
     }
   },
   {
@@ -139,13 +144,18 @@
     "margin-right": 10,
     "output": "DP-1",
     "modules-left": [
-      "hyprland/workspaces"
+      "hyprland/workspaces",
+      "hyprland/window"
     ],
     "hyprland/workspaces": {
       "format": "{name}",
       "active-only": false,
       "all-outputs": false,
       "on-click": "activate"
+    },
+    "hyprland/window": {
+      "max-length": 70,
+      "separate-outputs": true
     }
   },
   {
@@ -158,13 +168,18 @@
     "margin-right": 10,
     "output": "DP-2",
     "modules-left": [
-      "hyprland/workspaces"
+      "hyprland/workspaces",
+      "hyprland/window"
     ],
     "hyprland/workspaces": {
       "format": "{name}",
       "active-only": false,
       "all-outputs": false,
       "on-click": "activate"
+    },
+    "hyprland/window": {
+      "max-length": 70,
+      "separate-outputs": true
     }
   }
 ]
