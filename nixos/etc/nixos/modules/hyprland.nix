@@ -18,6 +18,14 @@
     wl-clipboard
     swayosd
     playerctl
-    nixos-artwork.wallpapers.nineish-dark-gray
+    waypaper
+
+
+    # Settings (modular replacements for gnome-control-center)
+    nwg-look
+    nwg-displays
+    pavucontrol
+    networkmanagerapplet
+    blueman
   ];
 }

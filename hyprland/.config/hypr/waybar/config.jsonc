@@ -54,13 +54,13 @@
       "format-ethernet": "Ethernet",
       "format-disconnected": "Offline",
       "tooltip-format": "{ifname} via {gwaddr}",
-      "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh network"
+      "on-click": "nm-connection-editor"
     },
     "custom/system-settings": {
       "format": "",
       "tooltip": true,
       "tooltip-format": "Settings",
-      "on-click": "$HOME/.config/hypr/scripts/open-gnome-settings.sh"
+      "on-click": "$HOME/.config/hypr/scripts/open-settings-menu.sh"
     },
     "custom/notifications": {
       "tooltip": false,
