@@ -1,27 +1,17 @@
 local highlight_filetypes = {
 	"bash",
-	"python",
 	"c",
 	"diff",
+	"go",
 	"html",
 	"javascript",
-	"lua",
-	"luadoc",
-	"markdown",
-	"query",
-	"typescript",
-	"vim",
-}
-
-local indent_filetypes = {
-	"bash",
-	"c",
-	"diff",
 	"jsdoc",
 	"lua",
 	"luadoc",
 	"markdown",
+	"python",
 	"query",
+	"tsx",
 	"typescript",
 	"vim",
 }
@@ -33,26 +23,36 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			local treesitter = require("nvim-treesitter")
+			-- Polyfill vim.list.unique for nvim < 0.12
+			if not vim.list then
+				vim.list = { unique = function(t)
+					local seen, result = {}, {}
+					for _, v in ipairs(t) do
+						if not seen[v] then
+							seen[v] = true
+							result[#result + 1] = v
+						end
+					end
+					return result
+				end }
+			end
 
-			treesitter.setup({
-				ensure_installed = {
-					"bash",
-					"c",
-					"diff",
-					"go",
-					"html",
-					"javascript",
-					"jsdoc",
-					"lua",
-					"luadoc",
-					"markdown",
-					"python",
-					"query",
-					"tsx",
-					"typescript",
-					"vim",
-				},
+			require("nvim-treesitter").install({
+				"bash",
+				"c",
+				"diff",
+				"go",
+				"html",
+				"javascript",
+				"jsdoc",
+				"lua",
+				"luadoc",
+				"markdown",
+				"python",
+				"query",
+				"tsx",
+				"typescript",
+				"vim",
 			})
 
 			local group = vim.api.nvim_create_augroup("dotfiles-treesitter", { clear = true })
@@ -65,13 +65,6 @@ return {
 				end,
 			})
 
-			vim.api.nvim_create_autocmd("FileType", {
-				group = group,
-				pattern = indent_filetypes,
-				callback = function(args)
-					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-				end,
-			})
 		end,
 	},
 }
