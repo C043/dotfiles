@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     hypridle
     hyprlock
-    hyprpaper
+
     waybar
     wofi
     swaynotificationcenter
@@ -18,8 +18,8 @@
     wl-clipboard
     swayosd
     playerctl
-    waypaper
-
+    hyprpaper
+    nixos-artwork.wallpapers.binary-black
 
     # Settings (modular replacements for gnome-control-center)
     nwg-look
