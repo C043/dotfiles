@@ -17,7 +17,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "consoleblank=0" ];
 
   system.stateVersion = "25.11";
 }
