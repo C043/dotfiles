@@ -19,8 +19,8 @@ choice="$(printf '%s\n' \
     --style "$HOME/.config/hypr/wofi/style.css")"
 
 case "$choice" in
-    *Displays*) exec nwg-displays ;;
-    *Network*) exec nm-connection-editor ;;
-    *Audio*) exec pavucontrol ;;
-    *Bluetooth*) exec blueman-manager ;;
+    *Displays*) nwg-displays & ;;
+    *Network*) nm-connection-editor & ;;
+    *Audio*) pavucontrol & ;;
+    *Bluetooth*) blueman-manager & ;;
 esac
