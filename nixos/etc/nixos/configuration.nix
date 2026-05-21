@@ -13,6 +13,7 @@
     ./modules/packages.nix
     ./modules/docker.nix
     ./modules/udev.nix
+    ./modules/hints.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
