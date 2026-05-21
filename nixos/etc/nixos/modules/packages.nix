@@ -20,6 +20,7 @@
     neovim
     tmux
     pciutils
+    libva-utils
     pulseaudio
     htop
     lsof
