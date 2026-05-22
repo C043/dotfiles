@@ -66,5 +66,6 @@ let
   };
 in
 {
+  boot.kernelModules = [ "uinput" ];
   environment.systemPackages = [ hints ];
 }
