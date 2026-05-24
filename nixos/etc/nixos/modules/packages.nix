@@ -26,6 +26,7 @@
     lsof
     jq
     yazi
+    unar
 
     # Git
     git
