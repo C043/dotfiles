@@ -54,6 +54,7 @@
     spotify
     zathura
     telegram-desktop
+    scribus
 
     # Fonts
     jetbrains-mono
