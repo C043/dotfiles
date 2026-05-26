@@ -4,29 +4,35 @@ direction="$1"
 mode="${2:-movewindoworgroup}"
 [ -z "$direction" ] && exit 1
 
-before=$(hyprctl activewindow -j)
-before_mon=$(echo "$before" | jq -r '.monitor // empty')
-before_x=$(echo "$before" | jq '.at[0] // empty')
-before_y=$(echo "$before" | jq '.at[1] // empty')
+before_mon=$(hyprctl activewindow -j | jq '.monitor')
 
 hyprctl dispatch "$mode" "$direction"
 
 win=$(hyprctl activewindow -j)
-after_mon=$(echo "$win" | jq -r '.monitor // empty')
-after_x=$(echo "$win" | jq '.at[0] // empty')
-after_y=$(echo "$win" | jq '.at[1] // empty')
+after_mon=$(echo "$win" | jq '.monitor')
 
-# Fallback: if window didn't move cross-monitor, force it to the target monitor.
-# Needed because Hyprland requires Y-overlap for directional moves, which fails
-# for the top monitor and the bottom portion of the taller central monitor.
-if [ "$before_mon" = "$after_mon" ] && [ "$before_x" = "$after_x" ] && [ "$before_y" = "$after_y" ]; then
-    case "$direction" in
-        l) target="DP-2" ;;
-        r) target="DP-1" ;;
-        u) target="HDMI-A-1" ;;
-        *) target="" ;;
-    esac
-    if [ -n "$target" ] && [ "$after_mon" != "$target" ]; then
+if [ "$before_mon" = "$after_mon" ]; then
+    target=$(hyprctl monitors -j | jq -r --argjson m "$before_mon" --arg dir "$direction" '
+      (.[] | select(.id == $m)) as $c |
+      [.[] | select(.id != $m) |
+        if $dir == "l" then select(.x + .width <= $c.x)
+        elif $dir == "r" then select(.x >= $c.x + $c.width)
+        elif $dir == "u" then select(.y + .height <= $c.y)
+        else select(.y >= $c.y + $c.height) end
+      ] as $candidates |
+      [$candidates[] |
+        if ($dir == "l" or $dir == "r")
+        then select(.y < $c.y + $c.height and .y + .height > $c.y)
+        else select(.x < $c.x + $c.width and .x + .width > $c.x) end
+      ] as $overlapping |
+      if ($overlapping | length) > 0 then empty
+      else [$candidates[] |
+        if ($dir == "l" or $dir == "r")
+        then {name, d: (if $dir == "l" then $c.x - .x - .width else .x - $c.x - $c.width end)}
+        else {name, d: (if $dir == "u" then $c.y - .y - .height else .y - $c.y - $c.height end)} end
+      ] | sort_by(.d) | first.name end // empty
+    ')
+    if [ -n "$target" ]; then
         hyprctl dispatch movewindow "mon:$target"
         win=$(hyprctl activewindow -j)
     fi
