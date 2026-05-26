@@ -1,8 +1,15 @@
 [opener]
 scribus = [
-	{ run = 'scribus "$@"', desc = "Open with Scribus", block = true },
+	{ run = 'scribus "$@"', desc = "Open with Scribus", orphan = true },
+]
+zathura = [
+	{ run = 'zathura "$@"', desc = "Open with Zathura", orphan = true },
 ]
 
 [[open.prepend_rules]]
 name = "*.sla"
 use = "scribus"
+
+[[open.prepend_rules]]
+mime = "application/pdf"
+use = "zathura"
