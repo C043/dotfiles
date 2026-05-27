@@ -22,6 +22,7 @@
     pciutils
     libva-utils
     pulseaudio
+    v4l-utils
     htop
     lsof
     jq
@@ -47,7 +48,9 @@
     # Apps
     kitty
     obsidian
-    vivaldi
+    (vivaldi.override {
+      commandLineArgs = "--disable-gpu-compositing";
+    })
     google-chrome
     chromium
     discord
