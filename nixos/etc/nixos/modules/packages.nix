@@ -54,6 +54,7 @@
     google-chrome
     chromium
     discord
+    beeper
     spotify
     zathura
     telegram-desktop
