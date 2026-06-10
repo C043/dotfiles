@@ -28,6 +28,7 @@
     jq
     yazi
     unar
+    psmisc
 
     # Git
     git
