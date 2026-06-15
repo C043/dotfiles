@@ -3,16 +3,6 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  # kitty from nixos-unstable (stable channel lags several minor versions)
-  nixpkgs.overlays = [
-    (final: prev: {
-      kitty =
-        (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-          inherit (prev) system;
-          config.allowUnfree = true;
-        }).kitty;
-    })
-  ];
   programs.nix-ld.enable = true;
   programs.firefox.enable = true;
   programs.zsh.enable = true;
