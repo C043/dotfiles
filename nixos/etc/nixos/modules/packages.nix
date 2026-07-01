@@ -25,6 +25,8 @@
     pulseaudio
     v4l-utils
     htop
+    iotop
+    iostat
     lsof
     jq
     yazi
