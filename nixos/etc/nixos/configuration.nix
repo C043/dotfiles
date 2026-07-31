@@ -14,6 +14,7 @@
     ./modules/docker.nix
     ./modules/udev.nix
     ./modules/hints.nix
+    ./modules/memory.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

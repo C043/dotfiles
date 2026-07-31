@@ -7,14 +7,9 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-    ];
   };
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 

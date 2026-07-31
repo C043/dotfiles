@@ -26,12 +26,14 @@
     v4l-utils
     htop
     iotop
-    iostat
+    sysstat
     lsof
     jq
     yazi
     unar
     psmisc
+    cava
+    cmatrix
 
     # Git
     git
