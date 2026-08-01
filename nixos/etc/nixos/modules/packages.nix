@@ -34,6 +34,7 @@
     psmisc
     cava
     cmatrix
+    borgbackup
 
     # Git
     git
