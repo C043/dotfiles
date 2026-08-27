@@ -51,6 +51,12 @@
     gcc
     platformio
     nixfmt-rfc-style
+    tree-sitter
+
+    # Java
+    jdk21
+    maven
+    gradle
 
     # Apps
     kitty
