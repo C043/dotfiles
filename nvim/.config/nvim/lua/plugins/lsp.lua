@@ -297,6 +297,8 @@ return {
 				"emmet-language-server",
 				"arduino_language_server",
 				"jdtls",
+				"java-debug-adapter",
+				"java-test",
 				"prettier",
 				"prettierd",
 				"google-java-format",
