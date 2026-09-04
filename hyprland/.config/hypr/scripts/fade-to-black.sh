@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
-# Fade the screen to black, lock, then power the outputs off.
+# Fade the screen to black with a screen shader, then lock, then hold the black
+# screen until fade-resume.sh kills this script.
 #
-# The screen shader is only ever a transient animation. dpms off is the real
-# "screen is off" state, and the EXIT trap guarantees the shader is cleared no
-# matter how this script dies -- a stuck shader leaves the session on a black
-# screen that input cannot recover.
+# The blackout is deliberately *only* a shader: `hyprctl dispatch dpms off`
+# disconnects every wayland client on this setup (see hypridle.conf). The EXIT
+# trap is what makes the shader safe -- however this script dies, the screen
+# comes back, so a stuck shader can never leave a black screen behind.
 
 SHADER_FILE=/tmp/hypr-fade-step.frag
 PIDFILE=/tmp/hypr-fade.pid
+
+# Already locked (manual lock): no animation to run, hyprlock is what is on
+# screen -- go straight to holding it black.
+if pidof hyprlock > /dev/null; then
+    ALREADY_LOCKED=1
+else
+    ALREADY_LOCKED=0
+fi
 
 cleanup() {
     hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null 2>&1
@@ -17,7 +26,10 @@ trap cleanup EXIT INT TERM
 
 echo $$ > "$PIDFILE"
 
-for i in $(seq 1 25); do
+first_step=1
+[ "$ALREADY_LOCKED" = 1 ] && first_step=25
+
+for i in $(seq "$first_step" 25); do
     pct=$((i * 4))
     if [ $pct -ge 100 ]; then
         alpha="1.0"
@@ -38,11 +50,10 @@ SHADER
     sleep 0.2
 done
 
-loginctl lock-session
+[ "$ALREADY_LOCKED" = 1 ] || loginctl lock-session
 
-# Let hyprlock map its surface behind the black shader, then hand over to dpms.
-# If hyprlock failed to start, this still ends in a recoverable state: the
-# outputs are merely asleep and any input turns them back on.
-sleep 1
-hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null 2>&1
-hyprctl dispatch dpms off
+# Stay alive holding the black screen: fade-resume.sh kills this process on the
+# next input, and the trap above clears the shader on the way out.
+while :; do
+    sleep 60
+done

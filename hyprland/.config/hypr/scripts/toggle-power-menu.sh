@@ -20,7 +20,7 @@ choice="$(printf '%s\n' \
 
 case "$choice" in
     *Lock)
-        exec hyprlock
+        exec loginctl lock-session
         ;;
     *Logout)
         exec hyprctl dispatch exit
