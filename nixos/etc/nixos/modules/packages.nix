@@ -71,6 +71,7 @@
     spotify
     zathura
     telegram-desktop
+    rustdesk
     scribus
 
     # Fonts
