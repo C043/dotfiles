@@ -6,9 +6,30 @@
 # disconnects every wayland client on this setup (see hypridle.conf). The EXIT
 # trap is what makes the shader safe -- however this script dies, the screen
 # comes back, so a stuck shader can never leave a black screen behind.
+set -u
 
 SHADER_FILE=/tmp/hypr-fade-step.frag
 PIDFILE=/tmp/hypr-fade.pid
+LOCKFILE=/tmp/hypr-fade.lock
+
+cleanup() {
+    hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null 2>&1
+    rm -f "$PIDFILE" "$SHADER_FILE"
+}
+
+# Cleaning up from the signal handler is NOT enough: bash resumes the script at
+# the point the signal interrupted it as soon as the handler returns. A fade
+# killed mid-way would clear the shader, then walk straight back down to full
+# black and sit there -- with $PIDFILE already deleted, so nothing could kill it
+# again and the only way out was a reboot. Exit from the handler instead and let
+# the EXIT trap do the cleanup exactly once, on the way out.
+trap cleanup EXIT
+trap 'exit 0' INT TERM HUP
+
+# One fade at a time. A second one would overwrite $PIDFILE and orphan the
+# first, which is the same unkillable-black-screen state by another route.
+exec 9> "$LOCKFILE"
+flock -n 9 || exit 0
 
 # Already locked (manual lock): no animation to run, hyprlock is what is on
 # screen -- go straight to holding it black.
@@ -17,12 +38,6 @@ if pidof hyprlock > /dev/null; then
 else
     ALREADY_LOCKED=0
 fi
-
-cleanup() {
-    hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null 2>&1
-    rm -f "$PIDFILE" "$SHADER_FILE"
-}
-trap cleanup EXIT INT TERM
 
 echo $$ > "$PIDFILE"
 
