@@ -64,7 +64,7 @@ export EDITOR=vim
 
 # Created by `pipx` on 2024-12-16 09:50:43
 export PATH="$PATH:/home/c043/.local/bin"
-export PATH="$PATH:/run/media/c043/Drive/EPICODE/c043-scripts"
+export PATH="$PATH:/run/media/c043/Drive/github/c043-scripts"
 export PATH="$PATH:/home/c043/.platformio/penv/bin"
 export PATH="$PATH:/snap/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
