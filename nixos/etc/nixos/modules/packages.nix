@@ -76,6 +76,7 @@
     telegram-desktop
     rustdesk
     scribus
+    inkscape
 
     # Fonts
     jetbrains-mono
