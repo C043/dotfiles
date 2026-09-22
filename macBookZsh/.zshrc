@@ -167,8 +167,8 @@ source <(fzf --zsh)
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-export PATH="$PATH:/Users/ultramaggot/Documents/GitHub/c043-scripts"
-export PATH="$PATH:/Users/ultramaggot/.cargo/bin"
+export PATH="$PATH:/Users/c043/github/c043-scripts"
+export PATH="$PATH:/Users/c043/.cargo/bin"
 
 # nvm init
 export NVM_DIR="$HOME/.nvm"
