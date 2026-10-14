@@ -35,6 +35,7 @@
     cava
     cmatrix
     borgbackup
+    openssl
 
     # Git
     git
@@ -76,6 +77,7 @@
     telegram-desktop
     rustdesk
     scribus
+    inkscape
 
     # Fonts
     jetbrains-mono
