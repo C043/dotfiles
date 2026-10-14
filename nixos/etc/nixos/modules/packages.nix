@@ -35,6 +35,7 @@
     cava
     cmatrix
     borgbackup
+    openssl
 
     # Git
     git
