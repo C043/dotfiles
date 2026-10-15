@@ -1,3 +1,8 @@
 {
-  "window_system": "hyprland"
+  "window_system": "hyprland",
+  "hints": {
+    "hint_height": 18,
+    "hint_width_padding": 8,
+    "hint_font_size": 14
+  }
 }

@@ -41,6 +41,12 @@ let
     postPatch = ''
       substituteInPlace setup.py \
         --replace-fail "self.install_hintsd_service()" "pass"
+
+      # Ignore other layers' exclusive zones (waybar), otherwise the overlay
+      # is pushed down by the bar height and hints land below their elements.
+      substituteInPlace hints/hints.py \
+        --replace-fail "GtkLayerShell.set_layer(window, GtkLayerShell.Layer.OVERLAY)" \
+                       "GtkLayerShell.set_layer(window, GtkLayerShell.Layer.OVERLAY); GtkLayerShell.set_exclusive_zone(window, -1)"
     '';
 
     env.HINTS_EXPECTED_BIN_DIR = "bin";
