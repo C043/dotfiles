@@ -52,4 +52,4 @@
 # cmd + alt - n : yabai -m space --create && yabai -m space --focus next
 
 cmd - t: kitty --directory=~
-cmd - b: open -na Vivaldi --args --new-window
+cmd - b : open -na "Firefox" --args --new-window
