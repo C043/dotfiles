@@ -62,9 +62,6 @@
     # Apps
     kitty
     obsidian
-    (vivaldi.override {
-      commandLineArgs = "--disable-gpu-compositing";
-    })
     # nvidia-vaapi-driver renders WebRTC streams (Meet screen share) green
     (google-chrome.override {
       commandLineArgs = "--disable-accelerated-video-decode";
