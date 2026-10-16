@@ -36,6 +36,7 @@
     cmatrix
     borgbackup
     openssl
+    hugo
 
     # Git
     git
