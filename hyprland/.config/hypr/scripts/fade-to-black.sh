@@ -8,9 +8,9 @@
 # comes back, so a stuck shader can never leave a black screen behind.
 set -u
 
-SHADER_FILE=/tmp/hypr-fade-step.frag
-PIDFILE=/tmp/hypr-fade.pid
-LOCKFILE=/tmp/hypr-fade.lock
+SHADER_FILE="$XDG_RUNTIME_DIR/hypr-fade-step.frag"
+PIDFILE="$XDG_RUNTIME_DIR/hypr-fade.pid"
+LOCKFILE="$XDG_RUNTIME_DIR/hypr-fade.lock"
 
 cleanup() {
     hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null 2>&1

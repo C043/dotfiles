@@ -13,8 +13,16 @@ set -u
 # at the end so it only ever matches a shell *running* the script, never
 # some other command that merely mentions its path.
 FADE='(ba)?sh .*fade-to-black\.sh$'
-PIDFILE=/tmp/hypr-fade.pid
-SHADER_FILE=/tmp/hypr-fade-step.frag
+PIDFILE="$XDG_RUNTIME_DIR/hypr-fade.pid"
+SHADER_FILE="$XDG_RUNTIME_DIR/hypr-fade-step.frag"
+
+# hypridle runs this after every pause of a second or more (see hypridle.conf),
+# so bail out cheaply unless something of the fade is actually left: its
+# pidfile, its process, or its shader still applied.
+if [ ! -e "$PIDFILE" ] && ! pgrep -f "$FADE" > /dev/null 2>&1 \
+    && ! hyprctl getoption decoration:screen_shader 2>/dev/null | grep -qF "str: $SHADER_FILE"; then
+    exit 0
+fi
 
 hyprctl dispatch dpms on > /dev/null 2>&1
 
