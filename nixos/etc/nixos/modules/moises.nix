@@ -47,6 +47,10 @@ in
 {
   environment.systemPackages = lib.optional available moises;
 
+  # The wrapped app only references the extracted contents, so without this
+  # the GC would drop the AppImage and the next rebuild would skip Moises.
+  system.extraDependencies = lib.optional available src;
+
   warnings = lib.optional (!available) ''
     Moises AppImage not in the Nix store, skipping it. Download it from
     https://desktop.moises.ai/ and run:
