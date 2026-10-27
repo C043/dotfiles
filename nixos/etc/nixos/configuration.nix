@@ -15,6 +15,7 @@
     ./modules/udev.nix
     ./modules/hints.nix
     ./modules/memory.nix
+    ./modules/moises.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
