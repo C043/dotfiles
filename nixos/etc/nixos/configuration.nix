@@ -16,6 +16,7 @@
     ./modules/hints.nix
     ./modules/memory.nix
     ./modules/moises.nix
+    ./modules/piano.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
