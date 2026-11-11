@@ -69,7 +69,6 @@
     })
     chromium
     discord
-    beeper
     spotify
     zathura
     telegram-desktop
