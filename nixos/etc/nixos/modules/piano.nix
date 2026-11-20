@@ -10,18 +10,6 @@ let
     hash = "sha256-PpTh8QPHgtU6JGYKZkbBrIhlQMg+ykJBGlOzge9Qfl8=";
   };
 
-  # The samples are recorded with real headroom (C4 at velocity 64 peaks around
-  # -26 dBFS) and sfizz_jack has no gain flag, so boost it in the SFZ. Every <global>
-  # needs it, since each one resets the last. Less velocity tracking lifts soft notes
-  # more than loud ones; plain gain would clip on chords first.
-  salamanderLoud = pkgs.runCommand "salamander-grand-piano-loud" { } ''
-    mkdir $out
-    ln -s ${salamander}/Data ${salamander}/Samples $out/
-    sed -e 's/^<global>/<global>\nglobal_volume=8/' \
-      -e 's/^set_hdcc$VELTRACK=0.73/set_hdcc$VELTRACK=0.3/' \
-      "${salamander}/Salamander Grand Piano V3.sfz" > "$out/Salamander Grand Piano V3.sfz"
-  '';
-
   # pw-jack runs sfizz on PipeWire's JACK libs, so services.pipewire.jack stays off.
   piano = pkgs.writeShellScriptBin "piano" ''
     pw_link=${pkgs.pipewire}/bin/pw-link
@@ -42,7 +30,7 @@ let
       --client_name piano \
       --jack_autoconnect=true \
       --num_voices 128 \
-      "${salamanderLoud}/Salamander Grand Piano V3.sfz" 2>&1 |
+      "${salamander}/Salamander Grand Piano V3.sfz" 2>&1 |
       while IFS= read -r line; do
         case "$line" in
           # A note arriving mid-load trips an assert in sfizz, so link only after it.
