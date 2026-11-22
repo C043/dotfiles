@@ -9,7 +9,12 @@ Also keeps the case LEDs solid red (the board does not keep it after power cycle
 Song colour: while pi-shazam plays a song it writes the artwork colour as
 "rrggbb" to /run/pishazam/led_color, and the LEDs take that colour. No file
 (no song, between songs, pi-shazam stopped) or a bad one = solid red.
-Colour changes fade over LED_FADE seconds; waking from standby fades in
+Colours are gamma-corrected before they reach the LEDs: "rrggbb" is a
+screen colour (sRGB), but LED brightness is linear, so a half-strength
+channel looks far brighter on an LED than on a screen and pastel/washed-out
+colours result (#ff7b85, salmon on screen, looks pale pink-white). With
+LED_GAMMA it shows as ~#ff333d instead. Pure primaries (#ff0000) are
+unchanged. Colour changes fade over LED_FADE seconds; waking from standby fades in
 from black. Going to standby switches the LEDs off at once.
 
 Standby: while /run/pishazam/standby exists (pi-shazam creates it when the
@@ -36,6 +41,7 @@ INTERVAL = 5
 STANDBY_FLAG = "/run/pishazam/standby"
 FLAG_POLL = 0.5   # how often the standby flag and LED colour are checked (s)
 COLOR_FILE = "/run/pishazam/led_color"
+LED_GAMMA = 2.2  # screen colour -> LED drive level; 1.0 = no correction
 LED_FADE = 5.0    # colour transitions take this long (s)
 FADE_STEP = 0.1   # LED update period while fading (s); each write takes ~0.05 s
 
@@ -64,13 +70,17 @@ def wanted_color():
     return LED_RGB
 
 
+def to_led(rgb):
+    return tuple(round(255 * (ch / 255) ** LED_GAMMA) for ch in rgb)
+
+
 def set_leds(rgb):
     write(REG_LED_MODE, 1)  # 1 = solid colour
-    write(REG_LED_ALL, *rgb)
+    write(REG_LED_ALL, *to_led(rgb))
 
 
 def set_rgb(rgb):
-    write(REG_LED_ALL, *rgb)  # colour only: the mode is already "solid"
+    write(REG_LED_ALL, *to_led(rgb))  # colour only: the mode is already "solid"
 
 
 def mix(a, b, t):
